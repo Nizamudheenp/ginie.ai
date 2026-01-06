@@ -1,5 +1,6 @@
 const groq = require('../config/groqClient');
 const Chat = require('../models/Chat');
+
 exports.sendMessage = async (req, res) => {
     try {
         const { message } = req.body;
@@ -9,14 +10,14 @@ exports.sendMessage = async (req, res) => {
             content: message
         });
 
-        const chatHistory = Chat.find().sort({ createdAt: 1 }).limit(10);
+        const chatHistory = await Chat.find().sort({ createdAt: 1 }).limit(10);
 
         const messages = [
             {
                 role: "system",
                 content: "You are a helpful AI assistant."
             },
-            ...(await chatHistory).map(msg => (
+            ...chatHistory.map(msg => (
                 {
                     role: msg.role === "assistant" ? "assistant" : "user",
                     content: msg.content
@@ -25,7 +26,7 @@ exports.sendMessage = async (req, res) => {
         ]
 
         const completion = await groq.chat.completions.create({
-            model: "llama3-8b-8192",
+            model: "llama-3.1-8b-instant",
             messages
         });
 
@@ -39,6 +40,7 @@ exports.sendMessage = async (req, res) => {
 
 
     } catch (error) {
-        res.status(500).send("server error", error)
+        console.error("AI ERROR:", error);
+        res.status(500).json({ error: "Server error" })
     }
 }

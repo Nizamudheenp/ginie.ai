@@ -1,0 +1,139 @@
+body {
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  font-family: "Inter", system-ui, sans-serif;
+  color: #e5e7eb;
+}
+
+.chat-container {
+  width: 420px;
+  height: 600px;
+  margin: 40px auto;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  border-radius: 18px;
+  box-shadow:
+    0 0 30px rgba(56, 189, 248, 0.25),
+    inset 0 0 0 1px rgba(148, 163, 184, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-header {
+  padding: 16px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #22d3ee, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 10px;
+}
+
+.message {
+  max-width: 85%;
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  line-height: 1.5;
+  font-size: 14px;
+  animation: fadeIn 0.25s ease-in;
+}
+
+.message.user {
+  margin-left: auto;
+  background: linear-gradient(135deg, #22d3ee, #3b82f6);
+  color: #020617;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+}
+
+.message.assistant {
+  margin-right: auto;
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  box-shadow: inset 0 0 12px rgba(99, 102, 241, 0.15);
+}
+
+.message pre {
+  background: #020617;
+  padding: 10px;
+  border-radius: 10px;
+  overflow-x: auto;
+  box-shadow: inset 0 0 10px rgba(34, 211, 238, 0.2);
+}
+
+.message code {
+  color: #22d3ee;
+  font-family: "Fira Code", monospace;
+  font-size: 13px;
+}
+
+.chat-input {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(2, 6, 23, 0.9);
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background: rgba(30, 41, 59, 0.9);
+  color: #e5e7eb;
+  font-size: 14px;
+}
+
+.chat-input input::placeholder {
+  color: #94a3b8;
+}
+
+.chat-input button {
+  padding: 0 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: linear-gradient(135deg, #22d3ee, #6366f1);
+  color: #020617;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.6);
+  transition: transform 0.15s ease;
+}
+
+.chat-input button:hover {
+  transform: scale(1.05);
+}
+
+.typing {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
