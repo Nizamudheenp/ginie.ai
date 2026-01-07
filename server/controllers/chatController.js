@@ -1,7 +1,7 @@
-const groq = require('../config/groqClient');
-const Chat = require('../models/Chat');
+import groq from "../config/groqClient.js";
+import Chat from "../models/Chat.js";
 
-exports.sendMessage = async (req, res) => {
+export const sendMessage = async (req, res) => {
     try {
         const { message } = req.body;
 

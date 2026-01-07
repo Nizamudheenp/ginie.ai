@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const chatSchema = new mongoose.Schema({
     role: { type: String, enum: ["user", "assistant"], required: true },
@@ -7,4 +7,4 @@ const chatSchema = new mongoose.Schema({
     { timestamps: true }
 );
 
-module.exports = mongoose.model('Chat', chatSchema);
+export default mongoose.model('Chat', chatSchema);
